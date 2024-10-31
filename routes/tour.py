@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 
 from models.base import Session
-from models.tour Tour
+from models.tour import Tour
 # from models.travel Travel
 
 tour_route = Blueprint("tours", "__name__")
@@ -43,7 +43,7 @@ def del_tour(id):
         tour = session.query(Tour).where(Tour.id == id).first()
         session.delete(tour)
         session.commit()
-        return redirect(url_for("tour.menu"))
+        return redirect(url_for("tours.menu"))
     
 @tour_route.get("/poll/")
 def poll():
