@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<form action="{{ url_for('tours.add_vote' )}}">
+    <label>{{ question }}</label>
+    {% for tour in tours %}
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tour" value="{{ tour.name }}">
+            <label class="form-check-label" for="flexRadioDefault1">
+                {{ tour.name }}
+            </label>
+        </div>
+    {% endfor %}
+    <input type="submit">
+ </form>
+{% endblock content %} 

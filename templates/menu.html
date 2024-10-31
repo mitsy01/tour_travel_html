@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>№</th>
+        <th>Назва </th>
+        <th>Ціна</th>
+        <th>Видалити</th>
+    </tr>
+    {% for tour in tours %}
+        <tr>
+            <td>{{ tour.id }}</td>
+            <td>{{ tour.name }}</td>
+            <td>{{ tour.price }}</td>
+            <td>
+                {% for travel in tour.travels %}
+                    {{ travel.name }}|
+                {% endfor %}
+            </td>
+        <td><a href="{{ url_for('tours.del_tour', id=tour.id)}}" class="btn btn-danger">Видалити тур</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+<form action="{{ url_for('tours.add_tour')}}" method="post">
+    <p>
+        <label>Назва</label>
+        <input type="text" name="name">
+    </p>
+    <p>
+        <label>Ціна</label>
+        <input type="number" name="price">
+    </p>
+    <p>
+
+    <button type="submit">Додати новий тур</button>
+</form>
+
+{% endblock content %}
